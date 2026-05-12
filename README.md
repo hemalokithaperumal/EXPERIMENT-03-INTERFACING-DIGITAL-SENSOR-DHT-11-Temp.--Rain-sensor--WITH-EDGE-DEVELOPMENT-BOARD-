@@ -114,7 +114,7 @@ while True:
 <img width="1599" height="899" alt="WhatsApp Image 2026-05-12 at 14 16 18" src="https://github.com/user-attachments/assets/ddbd5393-8aec-433b-8553-9f1bd926238e" />
 
 #  FIGURE -05 
-<img width="1599" height="899" alt="WhatsApp Image 2026-05-12 at 14 16 18" src="https://github.com/user-attachments/assets/47cb8627-53d3-4695-b4f7-2ab2c7a8495f" />
+<img width="605" height="397" alt="WhatsApp Image 2026-05-12 at 14 18 45" src="https://github.com/user-attachments/assets/9ba792d0-cb58-4fc9-ac75-be033a7418c5" />
 
 
 # FIGURE -06 
