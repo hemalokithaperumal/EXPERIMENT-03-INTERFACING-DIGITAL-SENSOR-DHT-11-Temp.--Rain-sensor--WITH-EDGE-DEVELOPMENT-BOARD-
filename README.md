@@ -125,23 +125,120 @@ while True:
 Experiment 3B
 ## PROGRAM (Python)
 ```
+import time
+import ssl
+import json
+import RPi.GPIO as GPIO
+import paho.mqtt.client as mqtt
 
+# =====================================================
+# GPIO SETUP
+# =====================================================
 
- 
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
+RAIN_SENSOR_PIN = 18
 
+GPIO.setup(RAIN_SENSOR_PIN, GPIO.IN)
 
+# =====================================================
+# MQTT SETUP
+# =====================================================
+
+MQTT_BROKER = "a3da202d34004ed3acf6e5b8a8ca0ec9.s1.eu.hivemq.cloud"
+MQTT_PORT = 8883
+
+MQTT_USER = "hivemq.webclient.1779176825768"
+MQTT_PASSWORD = "H2DQLkKo,?E$5<eh1d3b"
+
+MQTT_TOPIC = "raspberrypi/rain"
+
+client = mqtt.Client()
+
+client.username_pw_set(
+    MQTT_USER,
+    MQTT_PASSWORD
+)
+
+client.tls_set(
+    tls_version=ssl.PROTOCOL_TLS
+)
+
+# =====================================================
+# CONNECT TO HIVEMQ
+# =====================================================
+
+print("Connecting to HiveMQ Cloud...")
+
+client.connect(
+    MQTT_BROKER,
+    MQTT_PORT
+)
+
+client.loop_start()
+
+print("Connected Successfully")
+
+# =====================================================
+# MAIN LOOP
+# =====================================================
+
+try:
+
+    while True:
+
+        rain_value = GPIO.input(RAIN_SENSOR_PIN)
+
+        # ACTIVE LOW SENSOR
+        if rain_value == 0:
+
+            status = "RAIN DETECTED"
+            rain_status = 1
+
+        else:
+
+            status = "NO RAIN"
+            rain_status = 0
+
+        print(status)
+
+        payload = {
+            "rain_status": rain_status,
+            "message": status
+        }
+
+        client.publish(
+            MQTT_TOPIC,
+            json.dumps(payload)
+        )
+
+        print("Data Published")
+        print(payload)
+
+        time.sleep(5)
+
+except KeyboardInterrupt:
+
+    print("Program Stopped")
+
+    GPIO.cleanup()
+
+    client.loop_stop()
+    client.disconnect()
  
 ````
 
 ### OUPUT  
 
-# FIGURE -07 ADD TITILE HERE 
+# FIGURE -07
 
-#  FIGURE -08 ADD TITILE HERE 
+<img width="592" height="402" alt="image" src="https://github.com/user-attachments/assets/7f7ad77a-b288-4c36-8742-c6d0cc0fddba" />
 
-# FIGURE -09 ADD TITLE HERE 
+#  FIGURE -08 
+<img width="1911" height="971" alt="image" src="https://github.com/user-attachments/assets/129afc84-a261-473f-8827-7ed9ee27048d" />
 
+<img width="1911" height="971" alt="image" src="https://github.com/user-attachments/assets/57ecb5b0-cd1d-4816-8286-25d4a4400c67" />
 
 
 
