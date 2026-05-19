@@ -233,6 +233,9 @@ except KeyboardInterrupt:
 
 # FIGURE -07
 
+<img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/d84f44ee-6ed9-4225-a331-180970744f57" />
+
+
 <img width="592" height="402" alt="image" src="https://github.com/user-attachments/assets/7f7ad77a-b288-4c36-8742-c6d0cc0fddba" />
 
 #  FIGURE -08 
